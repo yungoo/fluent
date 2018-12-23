@@ -1,11 +1,11 @@
 #  Copyright 2018 U.C. Berkeley RISE Lab
-# 
+#
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
 #  You may obtain a copy of the License at
-# 
+#
 #      http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 #  Unless required by applicable law or agreed to in writing, software
 #  distributed under the License is distributed on an "AS IS" BASIS,
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,13 +32,13 @@ SET(CMAKE_CXX_STANDARD_REQUIRED on)
 
 SET(VENDOR_DIR vendor)
 
-IF(${CMAKE_CXX_COMPILER} STREQUAL "/usr/bin/clang++") 
+IF(${CMAKE_CXX_COMPILER} STREQUAL "/usr/bin/clang++")
   SET(CMAKE_CXX_FLAGS_COMMON
       "-std=c++11 \
       -stdlib=libc++")
 ENDIF()
 
-IF(${CMAKE_CXX_COMPILER} STREQUAL "/usr/bin/g++") 
+IF(${CMAKE_CXX_COMPILER} STREQUAL "/usr/bin/g++")
   SET(CMAKE_CXX_FLAGS_COMMON
       "-std=c++11")
 ENDIF()
@@ -72,7 +72,7 @@ INCLUDE_DIRECTORIES(${PROTOBUF_INCLUDE_DIR})
 PROTOBUF_GENERATE_CPP(PROTO_SRC PROTO_HEADER
   ./include/proto/requests.proto)
 
-# need to build a target at this level or subdirs won't have the 
+# need to build a target at this level or subdirs won't have the
 # protobuf files generated.
 ADD_LIBRARY(flproto ${PROTO_HEADER} ${PROTO_SRC})
 
@@ -81,15 +81,16 @@ FILE(GLOB_RECURSE ZMQ_UTIL_HEADER include/zmq/*.hpp)
 ADD_LIBRARY(flzmq STATIC ${ZMQ_UTIL_HEADER} ${ZMQ_UTIL_SRC})
 ADD_DEPENDENCIES(flzmq zeromq zeromqcpp)
 
-IF(${CMAKE_BUILD_TYPE} STREQUAL "Debug") 
+IF(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
   INCLUDE(cmake/clang-format.cmake)
-  INCLUDE(cmake/CodeCoverage.cmake) 
+  INCLUDE(cmake/CodeCoverage.cmake)
 ENDIF()
+
 
 INCLUDE(cmake/DownloadProject.cmake)
 DOWNLOAD_PROJECT(PROJ                googletest
-                 GIT_REPOSITORY      https://github.com/google/googletest.git
-                 GIT_TAG             release-1.8.0
+                 URL                 https://github.com/google/googletest/archive/release-1.8.1.tar.gz
+                 PREFIX ${CMAKE_CURRENT_BINARY_DIR}
                  UPDATE_DISCONNECTED 1
 )
 

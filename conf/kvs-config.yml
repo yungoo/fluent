@@ -1,20 +1,21 @@
 monitoring:
-  mgmt_ip: 127.0.0.1
+  # mgmt_ip: 127.0.0.1
+  mgmt_ip: "NULL"
   ip: 127.0.0.1
 routing:
-  monitoring: 
+  monitoring:
       - 127.0.0.1
   ip: 127.0.0.1
 user:
   monitoring:
       - 127.0.0.1
-  routing: 
+  routing:
       - 127.0.0.1
   ip: 127.0.0.1
 server:
   monitoring:
       - 127.0.0.1
-  routing: 
+  routing:
       - 127.0.0.1
   seed_ip: 127.0.0.1
   public_ip: 127.0.0.1

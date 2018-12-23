@@ -161,7 +161,7 @@ int main(int argc, char *argv[]) {
 
   while (true) {
     // listen for ZMQ events
-    kZmqUtil->poll(0, &pollitems);
+    kZmqUtil->poll(500, &pollitems);
 
     // handle a join or depart event
     if (pollitems[0].revents & ZMQ_POLLIN) {

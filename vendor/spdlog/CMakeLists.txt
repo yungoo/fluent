@@ -3,8 +3,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.6)
 INCLUDE(ExternalProject)
 
 EXTERNALPROJECT_ADD(spdlog
-    GIT_REPOSITORY "https://github.com/gabime/spdlog"
-    GIT_TAG "master"
+    URL "https://github.com/yungoo/spdlog/archive/v2.0.tar.gz"
+    PREFIX ${CMAKE_CURRENT_BINARY_DIR}
     BUILD_IN_SOURCE 1
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
@@ -13,4 +13,4 @@ EXTERNALPROJECT_ADD(spdlog
 )
 
 SET(SPDLOG_INCLUDE_DIRS
-    ${CMAKE_CURRENT_BINARY_DIR}/spdlog-prefix/src/spdlog/include PARENT_SCOPE)
+    ${CMAKE_CURRENT_BINARY_DIR}/src/spdlog/include PARENT_SCOPE)

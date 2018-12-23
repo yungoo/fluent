@@ -234,7 +234,7 @@ void run(unsigned thread_id, Address public_ip, Address private_ip,
 
   // enter event loop
   while (true) {
-    kZmqUtil->poll(0, &pollitems);
+    kZmqUtil->poll(500, &pollitems);
     // receives a node join
     if (pollitems[0].revents & ZMQ_POLLIN) {
       auto work_start = std::chrono::system_clock::now();
